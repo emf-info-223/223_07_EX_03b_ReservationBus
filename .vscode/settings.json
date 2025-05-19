@@ -1,0 +1,12 @@
+{
+    "java.project.referencedLibraries": [
+        "lib/**/*.jar"
+    ],
+    "markdownlint.config": {
+        "MD003": false,
+        "MD025": false,
+        "MD033": false,
+        "MD036": false,
+        "MD045": false
+    }
+}

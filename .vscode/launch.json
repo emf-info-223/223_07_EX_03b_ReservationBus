@@ -1,0 +1,11 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Gestion de véhicules et de voyageurs",
+            "request": "launch",
+            "mainClass": "app.Application"
+        }
+    ]
+}

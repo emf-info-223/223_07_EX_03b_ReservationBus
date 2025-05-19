@@ -1,0 +1,43 @@
+name: project_bus_company
+services:
+    #######################################
+    # MySQL
+    #######################################
+
+    service_bus_company_mysql:
+        container_name: container_bus_company_mysql
+        build:
+            context: .
+            dockerfile: Dockerfile-mysql
+        image: image_bus_company_mysql
+        ports:
+            - 3306:3306
+        environment:
+            TZ: Europe/Zurich
+            MYSQL_ROOT_PASSWORD: emf123
+            MYSQL_DATABASE: bus_company
+            MYSQL_USER: emf
+            MYSQL_PASSWORD: emf123
+
+    #######################################
+    # phpmyadmin
+    #######################################
+
+    service_bus_company_phpmyadmin:
+        container_name: container_bus_company_phpmyadmin
+        build:
+            context: .
+            dockerfile: Dockerfile-phpmyadmin
+        image: image_bus_company_phpmyadmin
+        restart: always
+        ports:
+            - 8080:80
+        depends_on:
+            - service_bus_company_mysql
+        environment:
+            TZ: Europe/Zurich
+            PMA_ARBITRARY: 1
+            PMA_HOST: service_bus_company_mysql
+            PMA_USER: root
+            PMA_PASSWORD: emf123
+            PMA_PMADB: bus_company

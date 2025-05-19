@@ -1,0 +1,355 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane minHeight="650.0" minWidth="800.0" prefHeight="650.0" prefWidth="800.0"
+    xmlns="http://javafx.com/javafx/8"
+    xmlns:fx="http://javafx.com/fxml/1" fx:controller="views.View">
+    <center>
+        <BorderPane style="-fx-background-color: #f0f0f0;" BorderPane.alignment="CENTER">
+            <center>
+                <VBox BorderPane.alignment="CENTER">
+                    <children>
+                        <VBox VBox.vgrow="ALWAYS">
+                            <children>
+                                <HBox alignment="CENTER" VBox.vgrow="ALWAYS">
+                                    <children>
+                                        <VBox HBox.hgrow="ALWAYS">
+                                            <children>
+                                                <Label text="Véhicule" VBox.vgrow="NEVER" />
+                                                <ComboBox fx:id="cbxVehicules" disable="true" VBox.vgrow="NEVER" />
+                                                <BorderPane VBox.vgrow="NEVER">
+                                                    <left>
+                                                        <Label text="Clients placés dans ce véhicule : " BorderPane.alignment="CENTER_LEFT">
+                                                            <padding>
+                                                                <Insets top="10.0" />
+                                                            </padding>
+                                                        </Label>
+                                                    </left>
+                                                    <right>
+                                                        <Label fx:id="txtStatsVehicule" alignment="CENTER_RIGHT" disable="true" text="0 / 0" BorderPane.alignment="CENTER">
+                                                            <font>
+                                                                <Font name="Arial Bold" size="13.0" />
+                                                            </font>
+                                                            <padding>
+                                                                <Insets top="10.0" />
+                                                            </padding>
+                                                        </Label>
+                                                    </right>
+                                                </BorderPane>
+                                                <TableView fx:id="tableViewVoyageursDansCeVehicule" disable="true" minHeight="50.0" VBox.vgrow="ALWAYS" />
+                                            </children>
+                                        </VBox>
+                                        <VBox alignment="CENTER" spacing="10.0">
+                                            <children>
+                                                <Button fx:id="btnPlacer" contentDisplay="TOP" disable="true" minWidth="100.0" mnemonicParsing="false" onAction="#onBtnPlacer" prefWidth="120.0" text="&lt;&lt; Placer">
+                                                    <graphic>
+                                                        <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                                                            <image>
+                                                                <Image url="@res/users_add_48.png" />
+                                                            </image>
+                                                        </ImageView>
+                                                    </graphic>
+                                                    <VBox.margin>
+                                                        <Insets top="70.0" />
+                                                    </VBox.margin>
+                                                </Button>
+                                                <Button fx:id="btnLiberer" contentDisplay="TOP" disable="true" layoutX="10.0" layoutY="10.0" minWidth="100.0" mnemonicParsing="false" onAction="#onBtnLiberer" prefWidth="120.0" text="Sortir &gt;&gt;">
+                                                    <graphic>
+                                                        <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                                                            <image>
+                                                                <Image url="@res/users_delete_48.png" />
+                                                            </image>
+                                                        </ImageView>
+                                                    </graphic>
+                                                </Button>
+                                            </children>
+                                            <padding>
+                                                <Insets left="10.0" right="10.0" />
+                                            </padding>
+                                        </VBox>
+                                        <VBox HBox.hgrow="ALWAYS">
+                                            <children>
+                                                <Label text="Filtre sur le nom ou prénom" VBox.vgrow="NEVER" />
+                                                <TextField fx:id="txtFiltreNomPrenom" disable="true" onAction="#onBtnRefresh" promptText="Entrez la partie connue + ENTER" VBox.vgrow="NEVER" />
+                                                <BorderPane>
+                                                    <left>
+                                                        <Label text="Clients à placer :" BorderPane.alignment="CENTER_LEFT">
+                                                            <padding>
+                                                                <Insets top="10.0" />
+                                                            </padding>
+                                                        </Label>
+                                                    </left>
+                                                    <right>
+                                                        <Label fx:id="txtStatsVoyageurs" alignment="CENTER_RIGHT" disable="true" text="0" BorderPane.alignment="CENTER">
+                                                            <font>
+                                                                <Font name="Arial Bold" size="13.0" />
+                                                            </font>
+                                                            <padding>
+                                                                <Insets top="10.0" />
+                                                            </padding>
+                                                        </Label>
+                                                    </right>
+                                                </BorderPane>
+                                                <TableView fx:id="tableViewVoyageursAPlacer" disable="true" minHeight="50.0" VBox.vgrow="ALWAYS" />
+                                            </children>
+                                        </VBox>
+                                    </children>
+                                </HBox>
+                            </children>
+                        </VBox>
+                        <Separator prefWidth="200.0">
+                            <VBox.margin>
+                                <Insets top="20.0" />
+                            </VBox.margin>
+                        </Separator>
+                        <VBox>
+                            <children>
+                                <Label text="Fiche de détail du client sélectionné" />
+                                <GridPane hgap="12.0" vgap="12.0">
+                                    <children>
+                                        <Label text="PK" GridPane.halignment="RIGHT" />
+                                        <Label text="Nom" GridPane.halignment="RIGHT" GridPane.rowIndex="1" />
+                                        <TextField fx:id="txtPK" disable="true" editable="false" GridPane.columnIndex="1" />
+                                        <TextField fx:id="txtPrenom" disable="true" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+                                        <Label text="Rue" GridPane.halignment="RIGHT" GridPane.rowIndex="2" />
+                                        <Label text="NPA" GridPane.halignment="RIGHT" GridPane.rowIndex="3" />
+                                        <TextField fx:id="txtNom" disable="true" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                        <DatePicker fx:id="dpDateNaissance" disable="true" showWeekNumbers="true" GridPane.columnIndex="3" GridPane.halignment="LEFT" GridPane.hgrow="ALWAYS" />
+                                        <TextField fx:id="txtRue" disable="true" GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.rowIndex="2" />
+                                        <Label text="Prénom" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                                        <Label text="Ville" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+                                        <TextField fx:id="txtNPA" disable="true" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                                        <TextField fx:id="txtVille" disable="true" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+                                        <Label text="Né le" GridPane.columnIndex="2" />
+                                    </children>
+                                    <columnConstraints>
+                                        <ColumnConstraints fillWidth="false" halignment="RIGHT" hgrow="NEVER" />
+                                        <ColumnConstraints hgrow="ALWAYS" />
+                                        <ColumnConstraints fillWidth="false" halignment="RIGHT" hgrow="NEVER" />
+                                        <ColumnConstraints hgrow="ALWAYS" />
+                                    </columnConstraints>
+                                    <rowConstraints>
+                                        <RowConstraints vgrow="SOMETIMES" />
+                                        <RowConstraints vgrow="SOMETIMES" />
+                                        <RowConstraints vgrow="SOMETIMES" />
+                                        <RowConstraints vgrow="SOMETIMES" />
+                                    </rowConstraints>
+                                    <VBox.margin>
+                                        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                                    </VBox.margin>
+                                </GridPane>
+                                <Separator prefWidth="200.0" />
+                                <HBox alignment="CENTER" spacing="50.0">
+                                    <padding>
+                                        <Insets left="10.0" right="10.0" top="20.0" />
+                                    </padding>
+                                    <children>
+                                        <Button fx:id="btnNew" disable="true" mnemonicParsing="false" onAction="#onBtnNew" text="New">
+                                            <graphic>
+                                                <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                                                    <image>
+                                                        <Image url="@res/new-128.png" />
+                                                    </image>
+                                                </ImageView>
+                                            </graphic>
+                                        </Button>
+                                        <Button fx:id="btnUpdate" disable="true" mnemonicParsing="false" onAction="#onBtnUpdate" text="Update">
+                                            <graphic>
+                                                <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                                                    <image>
+                                                        <Image url="@res/update-128.png" />
+                                                    </image>
+                                                </ImageView>
+                                            </graphic>
+                                        </Button>
+                                        <Button fx:id="btnDelete" disable="true" mnemonicParsing="false" onAction="#onBtnDelete" text="Delete">
+                                            <graphic>
+                                                <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                                                    <image>
+                                                        <Image url="@res/delete-128.png" />
+                                                    </image>
+                                                </ImageView>
+                                            </graphic>
+                                        </Button>
+                                    </children>
+                                </HBox>
+                            </children>
+                            <VBox.margin>
+                                <Insets top="10.0" />
+                            </VBox.margin>
+                            <padding>
+                                <Insets bottom="15.0" left="5.0" right="5.0" top="5.0" />
+                            </padding>
+                        </VBox>
+                    </children>
+                    <BorderPane.margin>
+                        <Insets />
+                    </BorderPane.margin>
+                </VBox>
+            </center>
+            <BorderPane.margin>
+                <Insets />
+            </BorderPane.margin>
+            <padding>
+                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+            </padding>
+        </BorderPane>
+    </center>
+    <right>
+        <HBox BorderPane.alignment="CENTER">
+            <children>
+                <VBox style="-fx-background-color: #FFFFFF;">
+                    <children>
+                        <BorderPane VBox.vgrow="ALWAYS">
+                            <bottom>
+                                <ImageView fitHeight="64.0" fitWidth="128.0" BorderPane.alignment="CENTER">
+                                    <image>
+                                        <Image url="@res/logo-section-256.png" />
+                                    </image>
+                                </ImageView>
+                            </bottom>
+                            <center>
+                                <ImageView fitHeight="128.0" fitWidth="128.0" BorderPane.alignment="CENTER">
+                                    <image>
+                                        <Image url="@res/swiss-made-1024.png" />
+                                    </image>
+                                </ImageView>
+                            </center>
+                            <top>
+                                <BorderPane BorderPane.alignment="CENTER">
+                                    <top>
+                                        <ImageView fitHeight="128.0" fitWidth="192.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+                                            <image>
+                                                <Image url="@res/many-db-icon.png" />
+                                            </image>
+                                        </ImageView>
+                                    </top>
+                                    <center>
+                                        <Label alignment="CENTER" text="JDBC : any database !" textAlignment="CENTER" BorderPane.alignment="CENTER">
+                                            <font>
+                                                <Font name="Arial" size="12.0" />
+                                            </font>
+                                        </Label>
+                                    </center>
+                                </BorderPane>
+                            </top>
+                        </BorderPane>
+                    </children>
+                    <padding>
+                        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                    </padding>
+                </VBox>
+            </children>
+            <BorderPane.margin>
+                <Insets />
+            </BorderPane.margin>
+        </HBox>
+    </right>
+    <top>
+        <BorderPane BorderPane.alignment="CENTER">
+            <center>
+                <HBox BorderPane.alignment="CENTER">
+                    <children>
+                        <ToolBar HBox.hgrow="ALWAYS">
+                            <items>
+                                <HBox spacing="10.0">
+                                    <children>
+                                        <Button fx:id="btnLogin" mnemonicParsing="false" onAction="#onBtnLogin" text="Login">
+                                            <graphic>
+                                                <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                                                    <image>
+                                                        <Image url="@res/login-128.png" />
+                                                    </image>
+                                                </ImageView>
+                                            </graphic>
+                                        </Button>
+                                        <Button fx:id="btnLogout" disable="true" mnemonicParsing="false" onAction="#onBtnLogout" text="Logout">
+                                            <graphic>
+                                                <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                                                    <image>
+                                                        <Image url="@res/logout-128.png" />
+                                                    </image>
+                                                </ImageView>
+                                            </graphic>
+                                        </Button>
+                                        <Separator maxWidth="10.0" minWidth="10.0" orientation="VERTICAL" prefWidth="10.0" HBox.hgrow="NEVER" />
+                                        <Button fx:id="btnRefresh" disable="true" mnemonicParsing="false" onAction="#onBtnRefresh" text="Refresh">
+                                            <graphic>
+                                                <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                                                    <image>
+                                                        <Image url="@res/refresh-128.png" />
+                                                    </image>
+                                                </ImageView>
+                                            </graphic>
+                                        </Button>
+                                        <Separator maxWidth="10.0" minWidth="10.0" orientation="VERTICAL" prefWidth="10.0" HBox.hgrow="NEVER" />
+                                        <Button fx:id="btnAbout" mnemonicParsing="false" onAction="#onBtnAbout" text="A propos">
+                                            <graphic>
+                                                <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                                                    <image>
+                                                        <Image url="@res/info-128.png" />
+                                                    </image>
+                                                </ImageView>
+                                            </graphic>
+                                        </Button>
+                                    </children>
+                                </HBox>
+                            </items>
+                            <padding>
+                                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                            </padding>
+                        </ToolBar>
+                        <ToolBar HBox.hgrow="NEVER">
+                            <padding>
+                                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                            </padding>
+                            <HBox.margin>
+                                <Insets />
+                            </HBox.margin>
+                            <items>
+                                <HBox spacing="10.0">
+                                    <children>
+                                        <Button fx:id="btnQuit" mnemonicParsing="false" onAction="#onBtnQuit" text="Quitter">
+                                            <graphic>
+                                                <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                                                    <image>
+                                                        <Image url="@res/exit-128.png" />
+                                                    </image>
+                                                </ImageView>
+                                            </graphic>
+                                        </Button>
+                                    </children>
+                                </HBox>
+                            </items>
+                        </ToolBar>
+                    </children>
+                </HBox>
+            </center>
+        </BorderPane>
+    </top>
+</BorderPane>

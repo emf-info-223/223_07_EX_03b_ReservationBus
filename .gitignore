@@ -1,17 +1,25 @@
+######################################
+# Fichiers à ignorer lors des push git
+######################################
+
+# Fichiers OSX
+Thumbs.db
+.DS_Store
+
+# Autres fichiers pas souhaités
+
+# Fichiers logs
+*.log
+
 # Compiled class file
 *.class
 
-# Log file
-*.log
-
-# BlueJ files
-*.ctxt
-
-# Mobile Tools for Java (J2ME)
-.mtj.tmp/
+# Version compilées
+/web-app/WEB-INF
+build/
+/bin
 
 # Package Files #
-*.jar
 *.war
 *.nar
 *.ear

@@ -123,7 +123,8 @@ public class View implements Initializable, IViewForController {
                 Parent root = (Parent) fxmlLoader.load();
                 principalScene = new Scene(root);
                 mainStage.setScene(principalScene);
-                mainStage.setTitle("Module 223 - E1 avec DAO, JPA, filtrage et verrouillage");
+                mainStage.setTitle(
+                        "Module 223 - Gestion de voyageurs et véhicules en JDBC avec filtrage et verrouillage");
                 mainStage.setMinWidth(950); // Pour limiter la taille min
                 mainStage.setMinHeight(680); // Pour limiter la taille min
                 mainStage.getIcons().add(new Image(getClass().getResourceAsStream("res/many-db-icon.png")));

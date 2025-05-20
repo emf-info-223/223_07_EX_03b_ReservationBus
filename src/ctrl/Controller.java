@@ -3,6 +3,7 @@ package ctrl;
 import services.db.DBException;
 import services.db.buscompany.IServiceDBBusCompany;
 import services.db.buscompany.ServiceDBBusCompany;
+import services.db.buscompany.ServiceDBBusCompanyUsingSP;
 import views.IViewForController;
 
 import java.util.List;
@@ -22,7 +23,8 @@ public class Controller implements IControllerForView {
     private IViewForController refView;
 
     public Controller() {
-        refServiceDBBusCompany = new ServiceDBBusCompany();
+        // refServiceDBBusCompany = new ServiceDBBusCompany();
+        refServiceDBBusCompany = new ServiceDBBusCompanyUsingSP();
         refView = null;
     }
 

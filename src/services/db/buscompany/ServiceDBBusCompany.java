@@ -324,7 +324,7 @@ public class ServiceDBBusCompany implements IServiceDBBusCompany {
 
     }
 
-    private Vehicule dbLireVehicule(long pk_vehicule) throws DBException {
+    protected Vehicule dbLireVehicule(long pk_vehicule) throws DBException {
 
         final String requeteSQL = "SELECT pk_vehicule, nom, description, capacite, version FROM t_vehicule WHERE pk_vehicule = "
                 + pk_vehicule;
@@ -402,6 +402,10 @@ public class ServiceDBBusCompany implements IServiceDBBusCompany {
             throw new DBException(ex.getMessage());
         }
         return listeVoyageurs;
+    }
+
+    public Connection getDbConnexion() {
+        return dbConnexion;
     }
 
 }

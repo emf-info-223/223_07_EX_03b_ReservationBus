@@ -111,7 +111,7 @@ class IServiceDBBusCompany {
 
 ```
 
-## Travail à réaliser
+## Travail à réaliser - Partie 1 (logique métier en JDBC)
 
 - Lisez avec attention cette consigne
 - Suivez avec attention la démonstration que votre professeur va vous faire, de manière à vous imprégner du fonctionnement de cette application et bien le comprendre.
@@ -125,6 +125,24 @@ class IServiceDBBusCompany {
 - **Quelles vérifications faudrait-il faire** pour garantir ces situations ?
 - Faites du pas-par-pas avec le débogueur et vérifiez bien que tous les cas de figure soient fonctionnels, sans générer d'erreurs ni d'exceptions
 
+## Travail à réaliser - Partie 2 (logique métier dans la BD à l'aide de procédures stockées)
+
+- Le code d'une procédure stockée `AjouterVoyageurs` vous est fourni dans le fichier [procedures_stockees.sql](mysql/schema/procedures_stockees.sql).
+- Importez cette procédure stockée dans votre BD MySQL.
+- Lisez son contenu et comprenez-la.
+- Dans votre classe `Controller`, n'utilisez plus le service `ServiceDBBusCompany` mais `ServiceDBBusCompanyUsingSP` qui vous est fourni.
+- Testez votre application : est-ce que l'ajout de voyageurs dans un vehicule fonctionne bien ?
+- Observez le code d'appel de la procédure stockée en Java : **plus simple, plus compact, plus robuste et laissant toute la "logique métier" là où doit être : du côté de la BD !**
+
+>>[!TIP]
+>> **Ayez des API répondant le plus directement possible aux besoins métier de votre application** !
+>>
+>> - L'application cliente n'aura qu'une seule API à appeler (celle permettant de faire l'action souhaitée) plutôt que de devoir en appeler des dizaines et des dizaines pour répondre à une demande de l'utilisateur (genre de multiples API CRUD).
+>> - L'**application cliente sera plus simple à écrire**.
+>> - L'**application cliente ne sera pas "FAT"**.
+>> - **La logique métier sera du côté BD**, là où elle doit se trouver, et pas du côté client !
+>> - **Les aspects multi-utilisateurs vus dans ce module seront beaucoup plus simples à mettre en oeuvre**  (coordinations, synchronisations, verrouillages nécessaires, ...) car mis en oeuvre côté BD ce qui est plus simple.
+>>
 ---
 
 <img src="res/EMF_logo_RVB_Info_long.png" width="25%" style="margin-left:-20px;">

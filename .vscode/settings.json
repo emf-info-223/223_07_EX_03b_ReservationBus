@@ -8,5 +8,6 @@
         "MD033": false,
         "MD036": false,
         "MD045": false
-    }
+    },
+    "java.format.settings.url": "eclipse-formatter.xml"
 }

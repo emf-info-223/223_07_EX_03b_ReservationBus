@@ -137,7 +137,7 @@ class IServiceDBBusCompany {
 >[!TIP]
 >**Ayez des API répondant le plus directement possible aux besoins métier de votre application** !
 >
->- L'application cliente n'aura qu'une seule API à appeler (celle permettant de faire l'action souhaitée) plutôt que de devoir en appeler des dizaines et des dizaines pour répondre à une demande de l'utilisateur (genre de multiples API CRUD).
+>- L'application cliente n'aura qu'une seule méthode à appeler (celle permettant de faire l'action souhaitée) plutôt que de devoir en appeler des dizaines et des dizaines pour répondre à une demande de l'utilisateur (genre de multiples méthodes CRUD).
 >- L'**application cliente sera plus simple à écrire**.
 >- L'**application cliente ne sera pas "FAT"**.
 >- **La logique métier sera du côté BD**, là où elle doit se trouver, et pas du côté client !

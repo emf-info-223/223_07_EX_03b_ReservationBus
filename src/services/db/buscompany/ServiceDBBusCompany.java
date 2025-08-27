@@ -109,7 +109,7 @@ public class ServiceDBBusCompany implements IServiceDBBusCompany {
 
         try {
             // Mise à jour de ce voyageur
-            String requeteSQL = "UPDATE t_voyageur SET nom=?, prenom=?, rue=?, npa=?, ville=?, date_naissance=?, version=? WHERE (pk_voyageur=?) AND (version=?)";
+            String requeteSQL = "UPDATE t_voyageur SET nom=?, prenom=?, rue=?, npa=?, ville=?, date_naissance=? WHERE (pk_voyageur=?)";
             PreparedStatement ps = dbConnexion.prepareStatement(requeteSQL);
             ps.setString(1, voyageur.getNom());
             ps.setString(2, voyageur.getPrenom());
@@ -117,17 +117,9 @@ public class ServiceDBBusCompany implements IServiceDBBusCompany {
             ps.setString(4, voyageur.getNpa());
             ps.setString(5, voyageur.getVille());
             ps.setDate(6, voyageur.getDateNaissance());
-            ps.setInt(7, voyageur.getVersion() + 1); // <<= INCREMENTER LA VERSION !!!
-            ps.setLong(8, voyageur.getPkVoyageur());
-            ps.setLong(9, voyageur.getVersion()); // <<= Paramètre supplémentaire !
+            ps.setLong(7, voyageur.getPkVoyageur());
             int nb = ps.executeUpdate();
             ps.close();
-
-            // Vérifier si la mise à jour a trouvé sa cible...
-            if (nb != 1) {
-                throw new DBException(
-                        "Ce voyageur n'a pas pu être mis à jour car il a entretemps été modifié/supprimé par un autre utilisateur. Veuillez rafraîchir vos données avant de ressayer !");
-            }
         } catch (SQLException ex) {
             throw new DBException(ex.getMessage());
         }

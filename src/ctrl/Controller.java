@@ -23,8 +23,7 @@ public class Controller implements IControllerForView {
     private IViewForController refView;
 
     public Controller() {
-        // refServiceDBBusCompany = new ServiceDBBusCompany();
-        refServiceDBBusCompany = new ServiceDBBusCompanyUsingSP();
+        refServiceDBBusCompany = new ServiceDBBusCompany();
         refView = null;
     }
 

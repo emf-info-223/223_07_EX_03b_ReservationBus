@@ -107,6 +107,11 @@ public class ServiceDBBusCompany implements IServiceDBBusCompany {
     @Override
     public void dbModifierVoyageur(Voyageur voyageur) throws DBException {
 
+        //
+        // CETTE METHODE NECESSITE DIVERSES PETITES MODIFICATIONS
+        // AFIN DE LA RENDRE ROBUSTE ET FONCTIONNELLE COMME VU EN COURS.
+        //
+
         try {
             // Mise à jour de ce voyageur
             String requeteSQL = "UPDATE t_voyageur SET nom=?, prenom=?, rue=?, npa=?, ville=?, date_naissance=? WHERE (pk_voyageur=?)";
